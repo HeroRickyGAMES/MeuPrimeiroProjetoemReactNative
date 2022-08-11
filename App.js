@@ -2,36 +2,31 @@
 //Programado por HeroRickyGames no curso de React Native do professor Matheus Fraga
 
 import React, { Component } from "react";
-import {View, Text, StyleSheet, FlatList} from 'react-native';
-import Slider from "@react-native-community/slider";
+import {View, Text, StyleSheet, Switch} from 'react-native';
+
 
 class App extends Component{
 
 constructor(props){
   super(props);
   this.state = {
-    valor: 0
+    status: false
   };
 }
 
   render(){
     return(
       <View style={styles.container}>
+        <Switch
+        value={this.state.status}
+        onValueChange={(valorSwitch)=> this.setState({status: valorSwitch})}
+        thumbColor="#FF0000"
 
-      <Slider
-      minimumValue={0}
-      maximumValue={100}
-      onValueChange={ (valorSelecionado) => this.setState({valorSelecionado})}
-      value={this.state.valor}
-      minimumTrackTintColor="#00ff00"
-      maximumTrackTintColor="#FF0000"
-      />
-
-      <Text style={{textAlign: 'center', fontSize: 30}}>
-        {this.state.valor.toFixed(0)}
-      </Text>
+        />
+        <Text style={{fontSize: 30, textAlign: 'center'}}>
+        {(this.state.status) ? "Ativo" : "Inativo"}
+        </Text>
       </View>
-
     );
   }
 }
